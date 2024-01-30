@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App Java Script </title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    
+<div class="main">
+    <div class="box" id="box">
+
+        <div class="title" id="question"><h3>This is the dummy Question.</h3></div>
+
+        <div class="row">
+
+            <input   type="radio" name="opt" id="option1" class="opt" value="a">
+            <label for="option1"  id="label"  >OPTION 1</label>
+
+            
+        </div>
+
+        <div class="row">
+
+            <input type="radio" name="opt" id="option2" class="opt" value="b">
+            <label for="option2" id="label">OPTION 2</label>
+
+            
+        </div>
+
+        <div class="row">
+
+            <input type="radio" name="opt" id="option3" class="opt" value="c">
+            <label for="option3" id="label">OPTION 3</label>
+
+            
+        </div>
+
+        <div class="row">
+
+            <input type="radio" name="opt" id="option4" class="opt" value="d">
+            <label for="option4" id="label">OPTION 4</label>
+
+            
+        </div>
+
+
+        <button id="btn" type="submit" onclick="submitquestion()">
+            Submit 
+        </button>
+
+    </div>
+</div>
+
+
+<!-- Script file -->
+
+<script>
+
+     const question = [
+
+     {
+        'que':'What does HTML Stands For',
+        'a' :'Hyper Text Markupt Language',
+        'b' : 'Cascading Style Sheets',
+        'c' : 'Document Object Model',
+        'd' : 'Helicopter Terminals markhup Language',
+        'correct' : 'a'
+        
+     },
+
+     {
+        'que':'in which years Java Script was launced ?',
+        'a' :'1990',
+        'b' : '1867',
+        'c' : '1995',
+        'd' : '2004',
+        'correct' : 'c'  
+     },
+
+     {
+
+
+        'que':'Which programming language is used for styling',
+        'a' :'Java Script',
+        'b' : 'Css',
+        'c' : 'HTML',
+        'd' : 'Python',
+        'correct' : 'b'
+     }
+     ]
+
+
+
+     let index = 0;
+     let quesbox = document.getElementById("question")
+     let option = document.querySelectorAll(".opt")
+
+
+     let total = question.length;
+     let right = 0;
+
+
+     let wrong = 0;
+   
+
+     function loadquestion(){
+
+
+        if(index === total){
+
+            return end()
+        }
+reset();
+        const data = question[index]
+
+        quesbox.innerText = (index + 1 + (  ")")) +  "   " + data .que
+
+        option [0].nextElementSibling.innerText = data.a;
+        option [1].nextElementSibling.innerText = data.b;
+        option [2].nextElementSibling.innerText = data.c;
+        option [3].nextElementSibling.innerText = data.d;
+
+
+     }
+
+     loadquestion();
+
+
+
+const submitquestion = ()=>{
+
+
+        const data = question[index]
+
+    const ans = getans()
+
+  if (ans === data.correct){
+
+
+right++;
+
+}
+  else{
+    wrong++;
+  }
+
+
+  index ++;
+  loadquestion()
+return;   
+}
+
+
+
+
+
+const getans = ()=>{
+
+
+    let answwer;
+
+option.forEach(
+
+
+
+(input)=>{
+    if(input.checked){
+      
+        answwer = input.value;
+        
+    }
+
+
+
+}
+)
+return answwer;
+}
+
+
+function reset (){
+
+    option.forEach(
+
+    (input) =>{
+        input.checked = false;
+
+    }
+    )
+}
+
+
+
+function end(){
+
+    document.getElementById("box").innerHTML = 
+    
+   ` 
+   <div style = "text-align:center">
+   
+   <h2> Thanks For Playing the Quiz Game</h2> 
+
+   <br/>
+     <h1>  ${right}/${total} are correct  </h1>
+
+     </div>
+
+   `
+    
+    
+     
+
+
+}
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
